@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    key: 'roofing',
+    icon: 'roofing',
+    badge: 'Core Service',
+    title: 'Roofing',
+    description:
+      'Whether you are building from the ground up or need to revitalize an aging structure, our roofing experts provide unmatched craftsmanship. We specialize in both traditional tile and modern metal roofing, ensuring your home remains dry and secure against the elements.',
+    items: ['New installations', 'Re-roofing', 'Leak repairs', 'Guttering', 'Ridge & valley work'],
+    image: '/images/service-roofing.jpg',
+    imageAlt: 'Professional roofing service',
+    imageLeft: true,
+  },
+  {
+    key: 'waterproofing',
+    icon: 'water_drop',
+    badge: 'Protection',
+    title: 'Waterproofing',
+    description:
+      'Moisture is the silent enemy of any property. Our advanced waterproofing solutions provide a seamless barrier for flat roofs, parapet walls, and wet areas, preventing structural damage and mold growth before they start.',
+    items: ['Flat roof waterproofing', 'Parapet walls', 'Bathroom tanking', 'Crack sealing', 'Preventative treatment'],
+    image: '/images/service-waterproofing.jpg',
+    imageAlt: 'Waterproofing application',
+    imageLeft: false,
+  },
+  {
+    key: 'painting',
+    icon: 'format_paint',
+    badge: 'Aesthetics',
+    title: 'Painting',
+    description:
+      'Transform your home\'s appearance and value with our premium painting services. We handle everything from rigorous surface preparation to the final coat, using high-quality paints designed to withstand the South African sun.',
+    items: ['Exterior painting', 'Interior painting', 'Surface prep & priming', 'Damp treatments', 'Colour consultation'],
+    image: '/images/service-painting.jpg',
+    imageAlt: 'Exterior painting project',
+    imageLeft: true,
+  },
+  {
+    key: 'alterations',
+    icon: 'architecture',
+    badge: 'Renovations',
+    title: 'Alterations & Additions',
+    description:
+      'Grow your space without the stress of moving. Our team handles structural alterations, room extensions, and conversions with a focus on seamless integration with your existing architecture.',
+    items: ['Room additions', 'Garage conversions', 'Wall removal', 'Stoep & patio enclosures', 'Structural alterations'],
+    image: '/images/service-alterations.jpg',
+    imageAlt: 'Home alteration project',
+    imageLeft: false,
+  },
+  {
+    key: 'floor-restoration',
+    icon: 'layers',
+    badge: 'Specialized',
+    title: 'Floor Restoration',
+    description:
+      'Bring your floors back to life. From leveling uneven screeds to precision re-grouting and sealing of tiled surfaces, we restore the foundational beauty of your home\'s interior.',
+    items: ['Tile relaying', 'Screed repairs', 'Floor levelling', 'Re-grouting', 'Surface sealing'],
+    image: '/images/service-floor.jpg',
+    imageAlt: 'Floor restoration work',
+    imageLeft: true,
+  },
+];
+---
+
+<Layout title="Services | AMATOLA Roof & Floor Restorers" activePage="services">
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="bg-deep-earth text-on-primary py-section-gap-mobile md:py-section-gap">
+    <div class="max-w-container-max mx-auto px-gutter">
+      <nav class="flex items-center space-x-2 mb-6 text-on-primary opacity-60 font-label-md text-label-md">
+        <a href="/" class="hover:text-brick-red">Home</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-brick-red">Services</span>
+      </nav>
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-brick-red">
+        Our Services
+      </h1>
+      <p class="font-body-lg text-body-lg max-w-2xl opacity-90">
+        Everything your home needs — under one trusted roof.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Service Sections ───────────────────────────────── -->
+  <main class="max-w-container-max mx-auto py-section-gap-mobile md:py-section-gap px-gutter">
+    {services.map((svc, i) => (
+      <section class={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${i < services.length - 1 ? 'mb-section-gap' : ''}`}>
+
+        <!-- Image (left on imageLeft, right otherwise) -->
+        <div class={`rounded-xl overflow-hidden shadow-sm border border-terracotta/20 aspect-video md:aspect-square ${svc.imageLeft ? '' : 'order-1 md:order-2'}`}>
+          <img src={svc.image} alt={svc.imageAlt} class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Content -->
+        <div class={`space-y-6 ${svc.imageLeft ? '' : 'order-2 md:order-1'}`}>
+          <div class="inline-flex items-center space-x-2 text-brick-red">
+            <span class="material-symbols-outlined">{svc.icon}</span>
+            <span class="font-label-md text-label-md uppercase tracking-widest">{svc.badge}</span>
+          </div>
+
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-earth">
+            {svc.title}
+          </h2>
+
+          <p class="font-body-lg text-body-lg text-on-surface-variant">
+            {svc.description}
+          </p>
+
+          <ul class="space-y-3">
+            {svc.items.map(item => (
+              <li class="flex items-center space-x-3 text-on-surface font-label-md text-label-md">
+                <span
+                  class="material-symbols-outlined text-brick-red"
+                  style="font-variation-settings: 'FILL' 1"
+                >
+                  check_circle
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <!-- ── CTA Band ────────────────────────────────────────── -->
+  <section class="bg-brick-red py-16">
+    <div class="max-w-container-max mx-auto px-gutter text-center">
+      <h2 class="font-headline-lg text-headline-lg text-on-primary mb-8">
+        Not sure what you need? We'll come take a look.
+      </h2>
+      <a
+        href="/quote"
+        class="inline-block bg-on-primary text-brick-red px-10 py-4 rounded-lg font-headline-md text-headline-md shadow-lg hover:bg-warm-cream transition-colors active:scale-95 duration-150"
+      >
+        Book a Free Assessment
+      </a>
+    </div>
+  </section>
+
+</Layout>

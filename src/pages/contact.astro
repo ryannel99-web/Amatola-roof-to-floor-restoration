@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contactDetails = [
+  {
+    icon: 'smartphone',
+    label: 'Cell Phone',
+    value: '082 784 2112',
+    href: 'tel:0827842112',
+  },
+  {
+    icon: 'call',
+    label: 'Telephone',
+    value: '043 740 0760',
+    href: 'tel:0437400760',
+  },
+  {
+    icon: 'mail',
+    label: 'Email Address',
+    value: 'derek@arfr.co.za',
+    href: 'mailto:derek@arfr.co.za',
+  },
+  {
+    icon: 'location_on',
+    label: 'Location',
+    value: 'East London, Eastern Cape',
+    sub: 'Servicing the Greater East London area and surrounds.',
+    href: null,
+  },
+  {
+    icon: 'schedule',
+    label: 'Business Hours',
+    value: 'Mon – Fri: 08:00 – 17:00',
+    sub: 'Sat: 08:00 – 13:00',
+    href: null,
+  },
+];
+---
+
+<Layout title="Contact Us | AMATOLA Roof & Floor Restorers" activePage="contact">
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <header class="bg-deep-earth py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C64A3E 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <div class="max-w-container-max mx-auto px-gutter relative z-10 text-center">
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-4">
+        Get In Touch
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-primary opacity-90 max-w-2xl mx-auto">
+        We're easy to reach and quick to respond. Whether it's a quote or a query,
+        our team is ready to assist.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── Contact Section ────────────────────────────────── -->
+  <section class="bg-warm-cream py-section-gap-mobile md:py-section-gap">
+    <div class="max-w-container-max mx-auto px-gutter">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+        <!-- ── Left: details + map ─────────────────────── -->
+        <div class="md:col-span-5 space-y-10">
+          <div class="space-y-8">
+            {contactDetails.map(item => (
+              <div class="flex items-start gap-4">
+                <div class="bg-brick-red text-on-primary p-3 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined">{item.icon}</span>
+                </div>
+                <div>
+                  <h3 class="font-label-md text-label-md text-terracotta uppercase">{item.label}</h3>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      class="font-headline-md text-headline-md text-deep-earth hover:text-brick-red transition-colors"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p class="font-headline-md text-headline-md text-deep-earth">{item.value}</p>
+                  )}
+                  {item.sub && (
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">{item.sub}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Map -->
+          <div class="rounded-xl overflow-hidden shadow-sm aspect-video bg-surface-container relative">
+            <img
+              src="/images/contact-map.jpg"
+              alt="East London service area map"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-deep-earth/20 flex items-center justify-center">
+              <div class="bg-surface px-6 py-3 rounded-full flex items-center gap-2 shadow-lg">
+                <span class="material-symbols-outlined text-brick-red">map</span>
+                <span class="font-label-md text-label-md text-on-surface">View Service Area</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Right: contact form ─────────────────────── -->
+        <div class="md:col-span-7">
+          <div class="bg-surface p-8 md:p-12 rounded-xl shadow-sm border border-terracotta/10">
+            <form id="contact-form" class="space-y-6" novalidate>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label class="font-label-md text-label-md text-on-surface-variant">Your Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="John Doe"
+                    class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="font-label-md text-label-md text-on-surface-variant">Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+27 00 000 0000"
+                    class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant">Required Service</label>
+                <select
+                  name="service"
+                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all appearance-none"
+                >
+                  <option value="">Select a service…</option>
+                  <option>Roofing</option>
+                  <option>Waterproofing</option>
+                  <option>Painting</option>
+                  <option>Alterations &amp; Additions</option>
+                  <option>Floor Restoration</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant">Your Message</label>
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Tell us about your project…"
+                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                id="submit-btn"
+                type="submit"
+                class="w-full bg-brick-red text-on-primary py-4 rounded-lg font-headline-md text-headline-md hover:brightness-110 active:scale-[0.98] transition-all shadow-lg"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Promise Band ────────────────────────────────────── -->
+  <section class="bg-sand-stone/20 py-12 border-y border-sand-stone/30">
+    <div class="max-w-container-max mx-auto px-gutter text-center">
+      <div class="inline-flex items-center gap-4 bg-surface px-8 py-4 rounded-full shadow-sm border border-sand-stone/20">
+        <span class="text-brick-red text-2xl">⚡</span>
+        <p class="font-headline-md text-headline-md text-deep-earth tracking-tight">
+          We aim to respond to all enquiries within 24 hours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ── Replace YOUR_FORM_ID with the ID from formspree.io/dashboard ──
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const btn  = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const original = btn.textContent!;
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        btn.textContent = '✓ Message Sent!';
+        btn.classList.replace('bg-brick-red', 'bg-tertiary-container');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.replace('bg-tertiary-container', 'bg-brick-red');
+          btn.disabled = false;
+          form.reset();
+        }, 3000);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      btn.textContent = 'Failed — please try again';
+      btn.classList.replace('bg-brick-red', 'bg-error');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.replace('bg-error', 'bg-brick-red');
+        btn.disabled = false;
+      }, 3000);
+    }
+  });
+</script>

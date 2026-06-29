@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand colors ───────────────────────────────────── */
+  --color-brick-red: #C64A3E;
+  --color-deep-earth: #2A1C16;
+  --color-warm-cream: #E9DFC7;
+  --color-terracotta: #B36651;
+  --color-sand-stone: #C8A387;
+
+  /* ── Material Design 3 color tokens ─────────────────── */
+  --color-background: #fff8f6;
+  --color-on-background: #261813;
+  --color-surface: #fff8f6;
+  --color-on-surface: #261813;
+  --color-on-surface-variant: #58413e;
+  --color-surface-variant: #f7ddd3;
+  --color-surface-container: #ffe9e2;
+  --color-surface-container-low: #fff1ec;
+  --color-surface-container-high: #fde3d9;
+  --color-surface-container-highest: #f7ddd3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-dim: #efd5cb;
+  --color-surface-bright: #fff8f6;
+  --color-surface-tint: #aa352c;
+  --color-primary: #a53229;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #c64a3e;
+  --color-on-primary-container: #fffaf9;
+  --color-primary-fixed: #ffdad5;
+  --color-primary-fixed-dim: #ffb4aa;
+  --color-on-primary-fixed: #410001;
+  --color-on-primary-fixed-variant: #891d17;
+  --color-secondary: #914b37;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ffa58c;
+  --color-on-secondary-container: #793826;
+  --color-secondary-fixed: #ffdbd1;
+  --color-secondary-fixed-dim: #ffb5a1;
+  --color-on-secondary-fixed: #3b0a01;
+  --color-on-secondary-fixed-variant: #733422;
+  --color-tertiary: #72553d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #8d6d54;
+  --color-on-tertiary-container: #fff9f8;
+  --color-tertiary-fixed: #ffdcc3;
+  --color-tertiary-fixed-dim: #e6bfa2;
+  --color-on-tertiary-fixed: #2b1705;
+  --color-on-tertiary-fixed-variant: #5c412b;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-outline: #8b716d;
+  --color-outline-variant: #dfbfbb;
+  --color-inverse-surface: #3d2d26;
+  --color-inverse-on-surface: #ffede7;
+  --color-inverse-primary: #ffb4aa;
+
+  /* ── Spacing ─────────────────────────────────────────── */
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 80px;
+  --spacing-section-gap-mobile: 48px;
+
+  /* ── Width / max-width ───────────────────────────────── */
+  --width-container-max: 1200px;
+
+  /* ── Border radius ───────────────────────────────────── */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* ── Font families ───────────────────────────────────── */
+  --font-display-lg: 'Hanken Grotesk', sans-serif;
+  --font-display-lg-mobile: 'Hanken Grotesk', sans-serif;
+  --font-headline-lg: 'Hanken Grotesk', sans-serif;
+  --font-headline-lg-mobile: 'Hanken Grotesk', sans-serif;
+  --font-headline-md: 'Hanken Grotesk', sans-serif;
+  --font-label-md: 'Hanken Grotesk', sans-serif;
+  --font-body-lg: 'Source Sans 3', sans-serif;
+  --font-body-md: 'Source Sans 3', sans-serif;
+}
+
+/* ── Custom text-scale utilities (size + leading + tracking + weight) ── */
+@utility text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+@utility text-display-lg-mobile {
+  font-size: 36px;
+  line-height: 42px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+@utility text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+@utility text-headline-lg-mobile {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+@utility text-label-md {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* ── File upload drop zone ────────────────────────────── */
+.file-drop-zone {
+  border: 2px dashed #B36651;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.file-drop-zone:hover {
+  background-color: #fff1ec;
+  border-color: #C64A3E;
+}
+
+/* ── Masonry grid ─────────────────────────────────────── */
+.masonry-grid {
+  columns: 1;
+  column-gap: 24px;
+}
+@media (min-width: 768px)  { .masonry-grid { columns: 2; } }
+@media (min-width: 1024px) { .masonry-grid { columns: 3; } }
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 24px;
+}
+
+/* ── Material Symbols icon variation settings ──────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}

@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="AMATOLA Roof & Floor Restorers | Residential Specialists" activePage="home">
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <header class="relative min-h-[700px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/hero.jpg"
+        alt="Premium residential roofing in East London"
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-deep-earth/90 via-deep-earth/40 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-container-max mx-auto px-gutter w-full py-20">
+      <div class="max-w-2xl space-y-6">
+        <p class="text-warm-cream font-label-md text-label-md tracking-[0.2em] uppercase">
+          Trusted Residential Specialists · East London &amp; Surrounds
+        </p>
+        <h1 class="text-on-primary font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+          Your Home, Restored<br />to Its Best
+        </h1>
+        <p class="text-warm-cream/90 font-body-lg text-body-lg leading-relaxed max-w-xl">
+          Expert roofing, waterproofing, painting, alterations and floor
+          restoration — done right, the first time.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a
+            href="/quote"
+            class="bg-brick-red text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-terracotta shadow-lg transition-all active:scale-95 text-center"
+          >
+            Get a Free Quote
+          </a>
+          <a
+            href="/services"
+            class="border-2 border-on-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-on-primary/10 transition-all text-center"
+          >
+            View Our Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Services Strip ─────────────────────────────────── -->
+  <section class="bg-warm-cream py-section-gap-mobile md:py-section-gap">
+    <div class="max-w-container-max mx-auto px-gutter">
+      <div class="mb-12">
+        <h2 class="font-headline-lg text-headline-lg text-deep-earth text-center md:text-left">What We Do</h2>
+        <div class="w-20 h-1 bg-brick-red mt-4 mx-auto md:mx-0"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Roofing -->
+        <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
+          <div class="mb-4 text-brick-red">
+            <span class="material-symbols-outlined text-4xl">roofing</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Roofing</h3>
+          <p class="text-on-surface-variant font-body-md text-body-md">New installations, re-roofing, repairs and full roof replacements</p>
+        </div>
+
+        <!-- Waterproofing -->
+        <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
+          <div class="mb-4 text-brick-red">
+            <span class="material-symbols-outlined text-4xl">water_damage</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Waterproofing</h3>
+          <p class="text-on-surface-variant font-body-md text-body-md">Protecting your home from leaks and moisture damage</p>
+        </div>
+
+        <!-- Painting -->
+        <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
+          <div class="mb-4 text-brick-red">
+            <span class="material-symbols-outlined text-4xl">format_paint</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Painting</h3>
+          <p class="text-on-surface-variant font-body-md text-body-md">Interior and exterior painting for a fresh, lasting finish</p>
+        </div>
+
+        <!-- Alterations -->
+        <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
+          <div class="mb-4 text-brick-red">
+            <span class="material-symbols-outlined text-4xl">construction</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Alterations</h3>
+          <p class="text-on-surface-variant font-body-md text-body-md">Structural home alterations and additions to suit your lifestyle</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Choose Us ──────────────────────────────────── -->
+  <section class="bg-deep-earth py-section-gap-mobile md:py-section-gap text-on-primary">
+    <div class="max-w-container-max mx-auto px-gutter text-center">
+      <h2 class="font-headline-lg text-headline-lg mb-16">Why Choose Amatola</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="space-y-4">
+          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-3xl">verified</span>
+          </div>
+          <h4 class="font-headline-md text-headline-md">Residential Specialists</h4>
+          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
+            We focus exclusively on homes, understanding the unique care required for private residences.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-3xl">handyman</span>
+          </div>
+          <h4 class="font-headline-md text-headline-md">Quality Workmanship</h4>
+          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
+            Years of experience and hands-on expertise delivering results that withstand the elements.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-3xl">payments</span>
+          </div>
+          <h4 class="font-headline-md text-headline-md">Honest Pricing</h4>
+          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
+            Clear, transparent quotes with no hidden costs. We respect your budget and your home.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Brand Quote Band ───────────────────────────────── -->
+  <section class="bg-warm-cream py-16 border-y border-sand-stone/20">
+    <div class="max-w-3xl mx-auto px-gutter text-center">
+      <h3 class="font-headline-lg text-headline-lg text-deep-earth mb-6">
+        "We work in your home. We treat it like our own."
+      </h3>
+      <p class="text-on-surface-variant font-body-lg text-body-lg leading-relaxed italic">
+        Amatola Roof &amp; Floor Restorers is a proudly South African company serving residential
+        homeowners across the Eastern Cape. From a leaking roof to a full exterior repaint —
+        we handle it all with care and professionalism.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Contact / Quote CTA ────────────────────────────── -->
+  <section class="bg-brick-red py-section-gap-mobile md:py-section-gap relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-black/5 rounded-full -ml-48 -mb-48"></div>
+
+    <div class="max-w-container-max mx-auto px-gutter relative z-10 text-center text-on-primary">
+      <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4">
+        Ready to Get Started?
+      </h2>
+      <p class="font-headline-md text-headline-md opacity-90 mb-12">
+        Contact us today for a free, no-obligation quote.
+      </p>
+
+      <div class="flex flex-col md:flex-row justify-center items-center gap-12 mb-12">
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-3xl">phone_in_talk</span>
+          <div class="text-left">
+            <p class="font-label-md text-label-md uppercase opacity-70">Call Us</p>
+            <p class="text-xl font-bold">082 784 2112 | 043 740 0760</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-3xl">mail</span>
+          <div class="text-left">
+            <p class="font-label-md text-label-md uppercase opacity-70">Email Us</p>
+            <p class="text-xl font-bold">derek@arfr.co.za</p>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="/quote"
+        class="inline-block bg-white text-brick-red px-12 py-5 rounded-lg font-headline-md text-headline-md hover:bg-warm-cream transition-all shadow-xl active:scale-95"
+      >
+        Request a Quote
+      </a>
+    </div>
+  </section>
+
+</Layout>

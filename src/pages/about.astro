@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const serviceAreas = [
+  "East London",
+  "King William's Town",
+  "Mdantsane",
+  "Gonubie",
+  "Berlin",
+  "Stutterheim",
+];
+---
+
+<Layout title="About Us | AMATOLA Roof & Floor Restorers" activePage="about">
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="bg-warm-cream py-section-gap-mobile md:py-section-gap px-gutter text-center">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">
+        About Amatola
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">
+        Built on honesty. Delivered with care.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Our Story ──────────────────────────────────────── -->
+  <section class="py-section-gap-mobile md:py-section-gap px-gutter bg-white">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative overflow-hidden rounded-xl shadow-lg">
+        <img
+          src="/images/about-story.jpg"
+          alt="Amatola contractor at work"
+          class="w-full h-[500px] object-cover"
+        />
+      </div>
+
+      <div class="space-y-6">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Who We Are</h2>
+        <div class="h-1 w-20 bg-brick-red"></div>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Based in the heart of the Eastern Cape, Amatola Roof &amp; Floor Restorers was founded on
+          a simple premise: professional craftsmanship should be personal. We've spent years
+          restoring the structural integrity and aesthetic beauty of homes across the region.
+        </p>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Our reputation is built on honesty, reliable workmanship, and a deep understanding of
+          local environmental factors that affect your home's exterior and interior surfaces.
+          We don't just fix problems; we provide lasting restoration solutions that protect your
+          most valuable investment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Values Strip ───────────────────────────────────── -->
+  <section class="bg-deep-earth py-16 px-gutter">
+    <div class="max-w-container-max mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-col items-center text-center p-8 bg-surface-container-highest/10 border border-on-primary/10 rounded-xl">
+          <span class="material-symbols-outlined text-brick-red text-4xl mb-4">home</span>
+          <h3 class="font-headline-md text-headline-md text-on-primary mb-2">Residential First</h3>
+          <p class="text-on-primary opacity-80 font-body-md text-body-md">
+            We treat every client's house with the same care and precision we would our own family home.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-8 bg-surface-container-highest/10 border border-on-primary/10 rounded-xl">
+          <span class="material-symbols-outlined text-brick-red text-4xl mb-4">verified_user</span>
+          <h3 class="font-headline-md text-headline-md text-on-primary mb-2">Honest &amp; Transparent</h3>
+          <p class="text-on-primary opacity-80 font-body-md text-body-md">
+            No hidden costs, no unnecessary repairs. We provide clear assessments and straightforward pricing.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-8 bg-surface-container-highest/10 border border-on-primary/10 rounded-xl">
+          <span class="material-symbols-outlined text-brick-red text-4xl mb-4">build</span>
+          <h3 class="font-headline-md text-headline-md text-on-primary mb-2">Quality That Lasts</h3>
+          <p class="text-on-primary opacity-80 font-body-md text-body-md">
+            Using premium materials and time-tested techniques to ensure your restoration stands the test of time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Meet the Team ──────────────────────────────────── -->
+  <section class="py-section-gap-mobile md:py-section-gap px-gutter bg-warm-cream/30">
+    <div class="max-w-container-max mx-auto text-center">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Meet the Team</h2>
+
+      <div class="max-w-md mx-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-terracotta/10">
+        <div class="h-80 w-full overflow-hidden">
+          <img
+            src="/images/about-derek.jpg"
+            alt="Derek, Founder & Lead Contractor"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="p-8 text-left">
+          <span class="text-brick-red font-label-md text-label-md uppercase tracking-wider">
+            Founder &amp; Lead Contractor
+          </span>
+          <h3 class="font-headline-md text-headline-md text-on-surface mt-2">Derek</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-4 leading-relaxed">
+            With over 20 years of hands-on experience in roof restoration and specialized flooring,
+            Derek leads every project with a commitment to technical excellence and old-school reliability.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Service Area ───────────────────────────────────── -->
+  <section class="py-section-gap-mobile md:py-section-gap px-gutter bg-surface-container-low">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+      <!-- Text + location list -->
+      <div class="order-2 md:order-1">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Service Area</h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+          We are proud to serve the Eastern Cape region. From residential suburbs to industrial hubs,
+          our team is mobile and ready to reach you.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <ul class="space-y-3">
+            {serviceAreas.slice(0, 3).map(area => (
+              <li class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-brick-red text-base"
+                  style="font-variation-settings: 'FILL' 1"
+                >location_on</span>
+                <span class="font-body-md text-body-md font-semibold">{area}</span>
+              </li>
+            ))}
+          </ul>
+          <ul class="space-y-3">
+            {serviceAreas.slice(3).map(area => (
+              <li class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-brick-red text-base"
+                  style="font-variation-settings: 'FILL' 1"
+                >location_on</span>
+                <span class="font-body-md text-body-md font-semibold">{area}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="order-1 md:order-2 bg-warm-cream/50 rounded-2xl p-4 flex items-center justify-center min-h-[400px]">
+        <div class="relative w-full h-full rounded-xl overflow-hidden border border-terracotta/20 shadow-inner bg-surface">
+          <img
+            src="/images/about-map.jpg"
+            alt="Eastern Cape service area map"
+            class="w-full h-full object-cover grayscale brightness-110 opacity-70"
+          />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="bg-brick-red text-on-primary px-4 py-2 rounded-full font-label-md text-label-md shadow-lg flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: 'FILL' 1"
+              >location_on</span>
+              LOCAL EXPERTS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Band ────────────────────────────────────────── -->
+  <section class="bg-brick-red py-12 px-gutter">
+    <div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+      <h2 class="font-headline-lg text-headline-lg text-on-primary">
+        Ready to work with a team you can trust?
+      </h2>
+      <a
+        href="/quote"
+        class="bg-on-primary text-brick-red px-10 py-4 rounded-lg font-headline-md text-headline-md shadow-xl hover:bg-warm-cream transition-all active:scale-95 duration-150 whitespace-nowrap"
+      >
+        Get a Free Quote
+      </a>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,43 @@
+<svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- House shape background -->
+  <polygon points="250,30 460,140 460,290 40,290 40,140" fill="#2A1C16"/>
+
+  <!-- Roof peak lines -->
+  <polyline points="30,148 250,18 470,148" fill="none" stroke="#C64A3E" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Chimney -->
+  <rect x="335" y="55" width="22" height="52" fill="#C64A3E" rx="2"/>
+
+  <!-- Brick column left -->
+  <rect x="40" y="148" width="28" height="142" fill="#C64A3E" rx="2"/>
+  <line x1="40" y1="172" x2="68" y2="172" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="40" y1="196" x2="68" y2="196" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="40" y1="220" x2="68" y2="220" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="40" y1="244" x2="68" y2="244" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="40" y1="268" x2="68" y2="268" stroke="#2A1C16" stroke-width="2"/>
+
+  <!-- Brick column right -->
+  <rect x="432" y="148" width="28" height="142" fill="#C64A3E" rx="2"/>
+  <line x1="432" y1="172" x2="460" y2="172" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="432" y1="196" x2="460" y2="196" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="432" y1="220" x2="460" y2="220" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="432" y1="244" x2="460" y2="244" stroke="#2A1C16" stroke-width="2"/>
+  <line x1="432" y1="268" x2="460" y2="268" stroke="#2A1C16" stroke-width="2"/>
+
+  <!-- White inner panel -->
+  <rect x="76" y="152" width="348" height="130" fill="#FFFFFF" rx="3"/>
+
+  <!-- AMATOLA -->
+  <text x="250" y="208" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="52" font-weight="900" fill="#C64A3E" letter-spacing="3">AMATOLA</text>
+
+  <!-- Separator line -->
+  <line x1="90" y1="216" x2="410" y2="216" stroke="#2A1C16" stroke-width="1.5"/>
+
+  <!-- Subtitle -->
+  <text x="250" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2A1C16" letter-spacing="2">ROOF TO FLOOR RESTORERS</text>
+
+  <!-- Bottom red bar -->
+  <rect x="76" y="255" width="348" height="8" fill="#C64A3E" rx="2"/>
+
+</svg>

@@ -1,0 +1,55 @@
+---
+export const prerender = false;
+
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import ProjectForm from '../../../components/admin/ProjectForm';
+import { getProject } from '../../../lib/projects';
+
+const { id } = Astro.params;
+if (!id) return Astro.redirect('/admin');
+
+let project = null;
+let loadError = '';
+
+try {
+  project = await getProject(id);
+} catch (err) {
+  loadError = 'Could not load project. It may have been deleted.';
+  console.error('Edit page getProject error:', err);
+}
+
+if (!project && !loadError) {
+  return Astro.redirect('/admin');
+}
+---
+
+<AdminLayout title={project ? `Edit: ${project.title}` : 'Edit Project'}>
+  <div class="max-w-container-max mx-auto px-gutter py-10">
+
+    <!-- Back link + title -->
+    <div class="mb-10">
+      <a
+        href="/admin"
+        class="inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-brick-red transition-colors mb-4"
+      >
+        <span class="material-symbols-outlined text-base">arrow_back</span>
+        Back to dashboard
+      </a>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">Edit Project</h1>
+      {project && (
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          Editing: <strong>{project.title}</strong>
+        </p>
+      )}
+    </div>
+
+    {loadError ? (
+      <div class="p-6 bg-error-container text-on-error-container rounded-2xl text-body-md font-body-md flex items-center gap-3">
+        <span class="material-symbols-outlined">error</span>
+        {loadError}
+      </div>
+    ) : (
+      <ProjectForm project={project!} client:load />
+    )}
+  </div>
+</AdminLayout>

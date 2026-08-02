@@ -27,29 +27,35 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   if (!file.type.startsWith('image/')) return json({ error: 'File must be an image' }, 400);
   if (file.size > MAX_FILE_SIZE) return json({ error: 'File is too large (max 20 MB)' }, 400);
 
-  const buffer = Buffer.from(await file.arrayBuffer());
+  try {
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-  // Compress: auto-rotate EXIF, resize to max 1400px, re-encode as progressive JPEG quality 80
-  const compressed = await sharp(buffer)
-    .rotate()
-    .resize(1400, 1400, { fit: 'inside', withoutEnlargement: true })
-    .jpeg({ quality: 80, progressive: true })
-    .toBuffer();
+    // Compress: auto-rotate EXIF, resize to max 1400px, re-encode as progressive JPEG quality 80
+    const compressed = await sharp(buffer)
+      .rotate()
+      .resize(1400, 1400, { fit: 'inside', withoutEnlargement: true })
+      .jpeg({ quality: 80, progressive: true })
+      .toBuffer();
 
-  // Before/after images get deterministic filenames so re-uploads overwrite them;
-  // regular photos get unique timestamp names.
-  const suffix =
-    role === 'before' || role === 'after'
-      ? role
-      : `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+    // Before/after images get deterministic filenames so re-uploads overwrite them;
+    // regular photos get unique timestamp names.
+    const suffix =
+      role === 'before' || role === 'after'
+        ? role
+        : `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
-  const blob = await put(`images/${projectId}/${suffix}.jpg`, compressed, {
-    access: 'public',
-    contentType: 'image/jpeg',
-    addRandomSuffix: false,
-  });
+    const blob = await put(`images/${projectId}/${suffix}.jpg`, compressed, {
+      access: 'public',
+      contentType: 'image/jpeg',
+      addRandomSuffix: false,
+    });
 
-  return json({ url: blob.url, isAfter: role === 'after' }, 200);
+    return json({ url: blob.url, isAfter: role === 'after' }, 200);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('Upload processing failed:', err);
+    return json({ error: `Upload processing failed: ${message}` }, 500);
+  }
 };
 
 function json(data: unknown, status: number): Response {

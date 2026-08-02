@@ -1,10 +1,15 @@
-const SESSION_SECRET = import.meta.env.SESSION_SECRET ?? 'dev-secret-change-in-production';
 const SESSION_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+function requireEnv(name: 'ADMIN_PASSWORD' | 'SESSION_SECRET'): string {
+  const value = import.meta.env[name];
+  if (!value) throw new Error(`Missing required environment variable: ${name}`);
+  return value;
+}
 
 async function getKey(): Promise<CryptoKey> {
   return crypto.subtle.importKey(
     'raw',
-    new TextEncoder().encode(SESSION_SECRET),
+    new TextEncoder().encode(requireEnv('SESSION_SECRET')),
     { name: 'HMAC', hash: 'SHA-256' },
     false,
     ['sign', 'verify']
@@ -12,7 +17,7 @@ async function getKey(): Promise<CryptoKey> {
 }
 
 export async function createSession(password: string): Promise<string | null> {
-  const adminPassword = import.meta.env.ADMIN_PASSWORD ?? 'Amatola2025!';
+  const adminPassword = requireEnv('ADMIN_PASSWORD');
   if (password !== adminPassword) return null;
 
   const timestamp = Date.now().toString();

@@ -91,6 +91,9 @@ const baDescription = baProject?.description ?? 'From weather-worn to like new �
               <div
                 class="masonry-item gallery-item group relative overflow-hidden rounded-xl border border-terracotta/10 cursor-pointer"
                 data-category={project.category}
+                data-project={JSON.stringify(project)}
+                role="button"
+                tabindex="0"
               >
                 <img
                   src={thumb.url}
@@ -121,6 +124,21 @@ const baDescription = baProject?.description ?? 'From weather-worn to like new �
       )}
     </div>
   </section>
+
+  <!-- ── Project Detail Modal ───────────────────────────── -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 md:p-8">
+    <div id="project-modal-backdrop" class="absolute inset-0 bg-deep-earth/80 backdrop-blur-sm"></div>
+    <div class="relative bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button
+        id="project-modal-close"
+        aria-label="Close"
+        class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-deep-earth/70 text-on-primary flex items-center justify-center hover:bg-deep-earth transition-colors"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div id="project-modal-body" class="p-6 md:p-10"></div>
+    </div>
+  </div>
 
   <!-- ── Before / After ─────────────────────────────────── -->
   <section class="bg-surface-container py-section-gap-mobile md:py-section-gap overflow-hidden">
@@ -268,6 +286,102 @@ const baDescription = baProject?.description ?? 'From weather-worn to like new �
       });
     });
   });
+
+  // ── Project detail modal ────────────────────────────────
+  interface ModalImage { url: string; alt: string; isAfter: boolean; }
+  interface ModalProject {
+    title: string;
+    description: string;
+    category: string;
+    isBeforeAfter: boolean;
+    images: ModalImage[];
+  }
+
+  const modal        = document.getElementById('project-modal');
+  const modalBody     = document.getElementById('project-modal-body');
+  const modalClose    = document.getElementById('project-modal-close');
+  const modalBackdrop = document.getElementById('project-modal-backdrop');
+
+  function imageBlock(img: ModalImage, label: string | null, labelClass: string): HTMLDivElement {
+    const wrap = document.createElement('div');
+    if (label) {
+      const p = document.createElement('p');
+      p.className = `text-label-md font-label-md font-bold mb-2 uppercase tracking-wide ${labelClass}`;
+      p.textContent = label;
+      wrap.appendChild(p);
+    }
+    const image = document.createElement('img');
+    image.src = img.url;
+    image.alt = img.alt;
+    image.loading = 'lazy';
+    image.className = 'w-full h-64 object-cover rounded-xl';
+    wrap.appendChild(image);
+    return wrap;
+  }
+
+  function openProject(project: ModalProject) {
+    if (!modal || !modalBody) return;
+    modalBody.replaceChildren();
+
+    const categorySpan = document.createElement('span');
+    categorySpan.className = 'inline-block font-label-md text-label-md mb-3 uppercase tracking-widest text-brick-red';
+    categorySpan.textContent = project.category;
+    modalBody.appendChild(categorySpan);
+
+    const title = document.createElement('h3');
+    title.className = 'font-headline-lg text-headline-lg text-on-surface mb-6';
+    title.textContent = project.title;
+    modalBody.appendChild(title);
+
+    const mediaGrid = document.createElement('div');
+    mediaGrid.className = 'grid sm:grid-cols-2 gap-4 mb-8';
+
+    if (project.isBeforeAfter) {
+      const before = project.images.find(i => !i.isAfter);
+      const after  = project.images.find(i => i.isAfter);
+      if (before) mediaGrid.appendChild(imageBlock(before, 'Before', 'text-on-surface-variant'));
+      if (after)  mediaGrid.appendChild(imageBlock(after, 'After', 'text-brick-red'));
+    } else {
+      project.images.forEach(img => mediaGrid.appendChild(imageBlock(img, null, '')));
+    }
+    modalBody.appendChild(mediaGrid);
+
+    if (project.description) {
+      const desc = document.createElement('p');
+      desc.className = 'font-body-md text-body-md text-on-surface-variant whitespace-pre-line';
+      desc.textContent = project.description;
+      modalBody.appendChild(desc);
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach(item => {
+    const raw = item.dataset.project;
+    if (!raw) return;
+    const project = JSON.parse(raw) as ModalProject;
+
+    item.addEventListener('click', () => openProject(project));
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProject(project);
+      }
+    });
+  });
+
+  modalClose?.addEventListener('click', closeModal);
+  modalBackdrop?.addEventListener('click', closeModal);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   // ── Before / After comparison slider ───────────────────
   const slider     = document.getElementById('comparison-slider');

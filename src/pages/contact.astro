@@ -102,75 +102,33 @@ const contactDetails = [
           </div>
         </div>
 
-        <!-- ── Right: contact form ─────────────────────── -->
+        <!-- ── Right: get a quote ───────────────────────── -->
         <div class="md:col-span-7">
-          <div class="bg-surface p-8 md:p-12 rounded-xl shadow-sm border border-terracotta/10">
-            <form id="contact-form" class="space-y-6" novalidate>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label class="font-label-md text-label-md text-on-surface-variant">Your Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="John Doe"
-                    class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
-                  />
-                </div>
-                <div class="space-y-2">
-                  <label class="font-label-md text-label-md text-on-surface-variant">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="+27 00 000 0000"
-                    class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
-                  />
-                </div>
-              </div>
+          <div class="bg-surface p-8 md:p-12 rounded-xl shadow-sm border border-terracotta/10 text-center space-y-8">
+            <div class="space-y-3">
+              <h2 class="font-headline-lg text-headline-lg text-deep-earth">Want a Free Quote?</h2>
+              <p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+                Call or email us with a few details about your project and we'll get back to you within 24 business hours to arrange a free on-site assessment.
+              </p>
+            </div>
 
-              <div class="space-y-2">
-                <label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="john@example.com"
-                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all"
-                />
-              </div>
-
-              <div class="space-y-2">
-                <label class="font-label-md text-label-md text-on-surface-variant">Required Service</label>
-                <select
-                  name="service"
-                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all appearance-none"
-                >
-                  <option value="">Select a service…</option>
-                  <option>Roofing</option>
-                  <option>Waterproofing</option>
-                  <option>Painting</option>
-                  <option>Alterations &amp; Additions</option>
-                  <option>Floor Restoration</option>
-                  <option>General Enquiry</option>
-                </select>
-              </div>
-
-              <div class="space-y-2">
-                <label class="font-label-md text-label-md text-on-surface-variant">Your Message</label>
-                <textarea
-                  name="message"
-                  rows="5"
-                  placeholder="Tell us about your project…"
-                  class="w-full border border-outline-variant bg-surface rounded-lg px-3 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-brick-red focus:border-brick-red transition-all resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                id="submit-btn"
-                type="submit"
-                class="w-full bg-brick-red text-on-primary py-4 rounded-lg font-headline-md text-headline-md hover:brightness-110 active:scale-[0.98] transition-all shadow-lg"
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <a
+                href="tel:0827842112"
+                class="flex items-center justify-center gap-3 bg-brick-red text-on-primary py-5 rounded-lg font-headline-md text-headline-md shadow-lg hover:brightness-110 active:scale-[0.98] transition-all"
               >
-                Send Message
-              </button>
-            </form>
+                <span class="material-symbols-outlined">call</span>
+                Call Us
+              </a>
+
+              <a
+                href="mailto:derek@arfr.co.za?subject=Free%20Quote%20Request"
+                class="flex items-center justify-center gap-3 bg-deep-earth text-on-primary py-5 rounded-lg font-headline-md text-headline-md shadow-lg hover:brightness-110 active:scale-[0.98] transition-all"
+              >
+                <span class="material-symbols-outlined">mail</span>
+                Email Us
+              </a>
+            </div>
           </div>
         </div>
       </div>

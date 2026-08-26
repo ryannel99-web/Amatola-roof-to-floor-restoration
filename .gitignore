@@ -3,6 +3,10 @@ dist/
 # generated types
 .astro/
 
+# runtime data: project records and uploaded photos
+/data/
+/uploads/
+
 # dependencies
 node_modules/
 

@@ -96,7 +96,7 @@ export default function ProjectForm({ project }: Props) {
 
   function removeImage(url: string) {
     setImages(prev => prev.filter(img => img.url !== url));
-    if (url.startsWith('https://')) {
+    if (url.startsWith('/uploads/')) {
       setRemovedUrls(prev => [...prev, url]);
     }
   }

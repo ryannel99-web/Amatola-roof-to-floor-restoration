@@ -1,13 +1,11 @@
 import type { APIRoute } from 'astro';
-import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import { put } from '@vercel/blob';
 import sharp from 'sharp';
 import { verifySession } from '../../lib/auth';
 
 export const prerender = false;
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20 MB
-const UPLOADS_DIR = path.resolve(process.env.UPLOADS_DIR ?? './uploads');
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   const c = cookies.get('admin_session');
@@ -25,9 +23,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const role = (formData.get('role') as string | null) ?? 'photo'; // 'before' | 'after' | 'photo'
 
   if (!file) return json({ error: 'No file provided' }, 400);
-  if (!projectId || !/^[a-zA-Z0-9_-]+$/.test(projectId)) {
-    return json({ error: 'Invalid projectId' }, 400);
-  }
+  if (!projectId) return json({ error: 'No projectId provided' }, 400);
   if (!file.type.startsWith('image/')) return json({ error: 'File must be an image' }, 400);
   if (file.size > MAX_FILE_SIZE) return json({ error: 'File is too large (max 20 MB)' }, 400);
 
@@ -48,11 +44,13 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         ? role
         : `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
-    const dir = path.join(UPLOADS_DIR, projectId);
-    await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, `${suffix}.jpg`), compressed);
+    const blob = await put(`images/${projectId}/${suffix}.jpg`, compressed, {
+      access: 'public',
+      contentType: 'image/jpeg',
+      addRandomSuffix: false,
+    });
 
-    return json({ url: `/uploads/${projectId}/${suffix}.jpg`, isAfter: role === 'after' }, 200);
+    return json({ url: blob.url, isAfter: role === 'after' }, 200);
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error('Upload processing failed:', err);

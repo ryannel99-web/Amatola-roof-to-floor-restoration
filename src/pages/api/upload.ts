@@ -23,7 +23,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const role = (formData.get('role') as string | null) ?? 'photo'; // 'before' | 'after' | 'photo'
 
   if (!file) return json({ error: 'No file provided' }, 400);
-  if (!projectId) return json({ error: 'No projectId provided' }, 400);
+  if (!projectId || !/^[a-zA-Z0-9_-]+$/.test(projectId)) {
+    return json({ error: 'Invalid projectId' }, 400);
+  }
   if (!file.type.startsWith('image/')) return json({ error: 'File must be an image' }, 400);
   if (file.size > MAX_FILE_SIZE) return json({ error: 'File is too large (max 20 MB)' }, 400);
 

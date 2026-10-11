@@ -1,5 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Photo strip between the stats and How It Works.
+// To change a photo, replace the file in public/images (keep the same name).
+// `grow` sets the relative width so the strip reads as a collage.
+const collage = [
+  { src: '/images/collage-1.jpg', alt: 'Roof restoration project', grow: 'grow-[3]' },
+  { src: '/images/collage-2.jpg', alt: 'Completed home exterior', grow: 'grow-[2]' },
+  { src: '/images/collage-3.jpg', alt: 'Interior painting project', grow: 'grow-[3]' },
+  { src: '/images/collage-4.jpg', alt: 'Modern home exterior', grow: 'grow-[2]' },
+  { src: '/images/collage-5.jpg', alt: 'Waterproofing project', grow: 'grow-[3]' },
+];
 ---
 
 <Layout title="AMATOLA Roof & Floor Restorers | Residential Specialists" activePage="home">
@@ -56,36 +67,24 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Roofing -->
         <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
-          <div class="mb-4 text-brick-red">
-            <span class="material-symbols-outlined text-4xl">roofing</span>
-          </div>
           <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Roofing</h3>
           <p class="text-on-surface-variant font-body-md text-body-md">New installations, re-roofing, repairs and full roof replacements</p>
         </div>
 
         <!-- Waterproofing -->
         <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
-          <div class="mb-4 text-brick-red">
-            <span class="material-symbols-outlined text-4xl">water_damage</span>
-          </div>
           <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Waterproofing</h3>
           <p class="text-on-surface-variant font-body-md text-body-md">Protecting your home from leaks and moisture damage</p>
         </div>
 
         <!-- Painting -->
         <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
-          <div class="mb-4 text-brick-red">
-            <span class="material-symbols-outlined text-4xl">format_paint</span>
-          </div>
           <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Painting</h3>
           <p class="text-on-surface-variant font-body-md text-body-md">Interior and exterior painting for a fresh, lasting finish</p>
         </div>
 
         <!-- Alterations -->
         <div class="bg-white p-8 rounded-lg border-t-4 border-brick-red shadow-sm hover:-translate-y-2 transition-transform duration-300">
-          <div class="mb-4 text-brick-red">
-            <span class="material-symbols-outlined text-4xl">construction</span>
-          </div>
           <h3 class="font-headline-md text-headline-md text-deep-earth mb-3">Alterations</h3>
           <p class="text-on-surface-variant font-body-md text-body-md">Structural home alterations and additions to suit your lifestyle</p>
         </div>
@@ -93,42 +92,116 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Why Choose Us ──────────────────────────────────── -->
+  <!-- ── Stats Band ─────────────────────────────────────── -->
   <section class="bg-deep-earth py-section-gap-mobile md:py-section-gap text-on-primary">
-    <div class="max-w-container-max mx-auto px-gutter text-center">
-      <h2 class="font-headline-lg text-headline-lg mb-16">Why Choose Amatola</h2>
+    <div class="max-w-container-max mx-auto px-gutter">
+      <p class="text-warm-cream font-label-md text-label-md tracking-[0.2em] uppercase text-center mb-12">
+        Amatola by the numbers
+      </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="space-y-4">
-          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
-            <span class="material-symbols-outlined text-3xl">verified</span>
-          </div>
-          <h4 class="font-headline-md text-headline-md">Residential Specialists</h4>
-          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
-            We focus exclusively on homes, understanding the unique care required for private residences.
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 text-center">
+        <div class="lg:border-r border-white/10 px-4">
+          <p class="font-display-lg text-display-lg-mobile md:text-display-lg text-brick-red leading-none">
+            <span data-count="20">20</span>+
           </p>
+          <p class="mt-3 font-headline-md text-lg">Years of experience</p>
+          <p class="mt-1 opacity-60 text-sm">Restoring Eastern Cape homes</p>
         </div>
 
-        <div class="space-y-4">
-          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
-            <span class="material-symbols-outlined text-3xl">handyman</span>
-          </div>
-          <h4 class="font-headline-md text-headline-md">Quality Workmanship</h4>
-          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
-            Years of experience and hands-on expertise delivering results that withstand the elements.
+        <!-- TODO: confirm real number of homes with Derek -->
+        <div class="lg:border-r border-white/10 px-4">
+          <p class="font-display-lg text-display-lg-mobile md:text-display-lg text-brick-red leading-none">
+            <span data-count="500">500</span>+
           </p>
+          <p class="mt-3 font-headline-md text-lg">Homes restored</p>
+          <p class="mt-1 opacity-60 text-sm">Roofs, walls and floors</p>
         </div>
 
-        <div class="space-y-4">
-          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-6">
-            <span class="material-symbols-outlined text-3xl">payments</span>
-          </div>
-          <h4 class="font-headline-md text-headline-md">Honest Pricing</h4>
-          <p class="opacity-80 font-body-md text-body-md leading-relaxed">
-            Clear, transparent quotes with no hidden costs. We respect your budget and your home.
+        <div class="lg:border-r border-white/10 px-4">
+          <p class="font-display-lg text-display-lg-mobile md:text-display-lg text-brick-red leading-none">
+            <span data-count="5">5</span>
           </p>
+          <p class="mt-3 font-headline-md text-lg">Trades, one team</p>
+          <p class="mt-1 opacity-60 text-sm">No juggling contractors</p>
+        </div>
+
+        <div class="px-4">
+          <p class="font-display-lg text-display-lg-mobile md:text-display-lg text-brick-red leading-none">
+            R0
+          </p>
+          <p class="mt-3 font-headline-md text-lg">For your quote</p>
+          <p class="mt-1 opacity-60 text-sm">Free and no obligation</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Photo Collage Strip ────────────────────────────── -->
+  <section aria-label="Recent work" class="bg-deep-earth">
+    <div class="flex gap-1 h-56 md:h-72 overflow-x-auto md:overflow-hidden snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {collage.map((photo) => (
+        <div class={`group relative shrink-0 w-[70vw] md:w-auto md:shrink md:basis-0 ${photo.grow} overflow-hidden snap-start`}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-deep-earth/10 group-hover:bg-transparent transition-colors duration-500"></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── How It Works ───────────────────────────────────── -->
+  <section class="bg-white py-section-gap-mobile md:py-section-gap">
+    <div class="max-w-container-max mx-auto px-gutter">
+      <div class="mb-16 text-center">
+        <h2 class="font-headline-lg text-headline-lg text-deep-earth">How It Works</h2>
+        <div class="w-20 h-1 bg-brick-red mt-4 mx-auto"></div>
+        <p class="mt-6 text-on-surface-variant font-body-lg text-body-lg max-w-xl mx-auto">
+          From your first call to the final walk-through, here's what to expect.
+        </p>
+      </div>
+
+      <ol class="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+        <!-- connecting line (desktop) -->
+        <div class="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-brick-red/20" aria-hidden="true"></div>
+
+        <li class="relative text-center">
+          <div class="relative z-10 w-14 h-14 mx-auto rounded-full bg-brick-red text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md">1</div>
+          <h3 class="mt-6 font-headline-md text-headline-md text-deep-earth">Get in touch</h3>
+          <p class="mt-3 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+            <a href="tel:0827842112" class="text-brick-red font-semibold hover:underline">Call</a> or
+            <a href="https://wa.me/27827842112" target="_blank" rel="noopener" class="text-brick-red font-semibold hover:underline">WhatsApp</a>
+            us and tell us what's going on with your home.
+          </p>
+        </li>
+
+        <li class="relative text-center">
+          <div class="relative z-10 w-14 h-14 mx-auto rounded-full bg-brick-red text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md">2</div>
+          <h3 class="mt-6 font-headline-md text-headline-md text-deep-earth">Free assessment</h3>
+          <p class="mt-3 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+            We visit, inspect the problem properly and give you a clear quote. No obligation.
+          </p>
+        </li>
+
+        <li class="relative text-center">
+          <div class="relative z-10 w-14 h-14 mx-auto rounded-full bg-brick-red text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md">3</div>
+          <h3 class="mt-6 font-headline-md text-headline-md text-deep-earth">We do the work</h3>
+          <p class="mt-3 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+            Our own experienced team gets it done, treating your home like our own.
+          </p>
+        </li>
+
+        <li class="relative text-center">
+          <div class="relative z-10 w-14 h-14 mx-auto rounded-full bg-brick-red text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md">4</div>
+          <h3 class="mt-6 font-headline-md text-headline-md text-deep-earth">Final walk-through</h3>
+          <p class="mt-3 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+            We check the finished job together, and leave your home clean and tidy.
+          </p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -186,3 +259,31 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 </Layout>
+
+<script>
+  // Count stats up from 0 the first time they scroll into view
+  const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target as HTMLElement;
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const duration = 1400;
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        el.textContent = '0';
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach((el) => observer.observe(el));
+  }
+</script>

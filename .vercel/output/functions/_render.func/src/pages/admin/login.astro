@@ -1,0 +1,117 @@
+---
+export const prerender = false;
+
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { verifySession } from '../../lib/auth';
+
+// Redirect already-logged-in users to the dashboard
+const cookie = Astro.cookies.get('admin_session');
+if (cookie && await verifySession(cookie.value)) {
+  return Astro.redirect('/admin');
+}
+---
+
+<AdminLayout title="Login">
+  <div class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-gutter py-16">
+    <div class="w-full max-w-md">
+
+      <!-- Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-terracotta/10 p-10">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-brick-red/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="material-symbols-outlined text-3xl text-brick-red">lock</span>
+          </div>
+          <h1 class="font-headline-lg text-headline-lg text-on-surface">Portfolio Admin</h1>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">Enter your password to continue</p>
+        </div>
+
+        <!-- Form -->
+        <form id="login-form" class="space-y-5">
+          <div>
+            <label for="password" class="block font-label-md text-label-md text-on-surface mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              required
+              placeholder="Enter admin password"
+              class="w-full px-4 py-4 text-body-lg font-body-lg border border-outline/30 rounded-xl bg-white focus:outline-none focus:border-brick-red transition-colors"
+            />
+          </div>
+
+          <div id="login-error" class="hidden p-4 bg-error-container text-on-error-container rounded-xl text-body-md font-body-md flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">error</span>
+            <span id="login-error-text">Incorrect password. Please try again.</span>
+          </div>
+
+          <button
+            type="submit"
+            id="login-btn"
+            class="w-full py-5 bg-brick-red text-on-primary rounded-xl font-headline-md text-headline-md hover:bg-brick-red/90 transition-all active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined" id="login-icon">login</span>
+            <span id="login-label">Log In</span>
+          </button>
+        </form>
+      </div>
+
+      <p class="text-center font-body-md text-body-md text-on-surface-variant mt-6">
+        <a href="/" class="hover:text-brick-red transition-colors">← Back to website</a>
+      </p>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  const form = document.getElementById('login-form') as HTMLFormElement;
+  const errorBox = document.getElementById('login-error') as HTMLElement;
+  const errorText = document.getElementById('login-error-text') as HTMLElement;
+  const btn = document.getElementById('login-btn') as HTMLButtonElement;
+  const icon = document.getElementById('login-icon') as HTMLElement;
+  const label = document.getElementById('login-label') as HTMLElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+
+    btn.disabled = true;
+    icon.textContent = 'progress_activity';
+    icon.classList.add('animate-spin');
+    label.textContent = 'Logging in…';
+
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+
+      if (res.ok) {
+        icon.textContent = 'check_circle';
+        icon.classList.remove('animate-spin');
+        label.textContent = 'Redirecting…';
+        window.location.href = '/admin';
+      } else {
+        const data = await res.json();
+        errorText.textContent = data.error ?? 'Incorrect password. Please try again.';
+        errorBox.classList.remove('hidden');
+        btn.disabled = false;
+        icon.textContent = 'login';
+        icon.classList.remove('animate-spin');
+        label.textContent = 'Log In';
+      }
+    } catch {
+      errorText.textContent = 'Network error. Please try again.';
+      errorBox.classList.remove('hidden');
+      btn.disabled = false;
+      icon.textContent = 'login';
+      icon.classList.remove('animate-spin');
+      label.textContent = 'Log In';
+    }
+  });
+</script>

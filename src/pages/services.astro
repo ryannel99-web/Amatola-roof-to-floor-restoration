@@ -4,8 +4,6 @@ import Layout from '../layouts/Layout.astro';
 const services = [
   {
     key: 'roofing',
-    icon: 'roofing',
-    badge: 'Core Service',
     title: 'Roofing',
     description:
       'Whether you are building from the ground up or need to revitalize an aging structure, our roofing experts provide unmatched craftsmanship. We specialize in both traditional tile and modern metal roofing, ensuring your home remains dry and secure against the elements.',
@@ -16,8 +14,6 @@ const services = [
   },
   {
     key: 'waterproofing',
-    icon: 'water_drop',
-    badge: 'Protection',
     title: 'Waterproofing',
     description:
       'Moisture is the silent enemy of any property. Our advanced waterproofing solutions provide a seamless barrier for flat roofs, parapet walls, and wet areas, preventing structural damage and mold growth before they start.',
@@ -28,8 +24,6 @@ const services = [
   },
   {
     key: 'painting',
-    icon: 'format_paint',
-    badge: 'Aesthetics',
     title: 'Painting',
     description:
       'Transform your home\'s appearance and value with our premium painting services. We handle everything from rigorous surface preparation to the final coat, using high-quality paints designed to withstand the South African sun.',
@@ -40,8 +34,6 @@ const services = [
   },
   {
     key: 'alterations',
-    icon: 'architecture',
-    badge: 'Renovations',
     title: 'Alterations & Additions',
     description:
       'Grow your space without the stress of moving. Our team handles structural alterations, room extensions, and conversions with a focus on seamless integration with your existing architecture.',
@@ -52,8 +44,6 @@ const services = [
   },
   {
     key: 'floor-restoration',
-    icon: 'layers',
-    badge: 'Specialized',
     title: 'Floor Restoration',
     description:
       'Bring your floors back to life. From leveling uneven screeds to precision re-grouting and sealing of tiled surfaces, we restore the foundational beauty of your home\'s interior.',
@@ -85,23 +75,31 @@ const services = [
   </section>
 
   <!-- ── Service Sections ───────────────────────────────── -->
-  <main class="max-w-container-max mx-auto py-section-gap-mobile md:py-section-gap px-gutter">
+  <main>
     {services.map((svc, i) => (
-      <section class={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${i < services.length - 1 ? 'mb-section-gap' : ''}`}>
+      <section class={`relative overflow-hidden py-section-gap-mobile md:py-section-gap px-gutter ${i % 2 ? 'bg-warm-cream/40' : 'bg-white'}`}>
+
+        <!-- Background art: faded roof-tile pattern behind the image side -->
+        <div
+          class={`tile-pattern absolute inset-y-0 w-full md:w-3/5 pointer-events-none ${svc.imageLeft ? 'left-0 fade-right' : 'right-0 fade-left'}`}
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
         <!-- Image (left on imageLeft, right otherwise) -->
-        <div class={`rounded-xl overflow-hidden shadow-sm border border-terracotta/20 aspect-video md:aspect-square ${svc.imageLeft ? '' : 'order-1 md:order-2'}`}>
+        <div class={`rounded-xl overflow-hidden shadow-lg border border-terracotta/20 aspect-video md:aspect-square ${svc.imageLeft ? '' : 'order-1 md:order-2'}`}>
           <img src={svc.image} alt={svc.imageAlt} class="w-full h-full object-cover" />
         </div>
 
         <!-- Content -->
-        <div class={`space-y-6 ${svc.imageLeft ? '' : 'order-2 md:order-1'}`}>
-          <div class="inline-flex items-center space-x-2 text-brick-red">
-            <span class="material-symbols-outlined">{svc.icon}</span>
-            <span class="font-label-md text-label-md uppercase tracking-widest">{svc.badge}</span>
-          </div>
+        <div class={`relative space-y-6 ${svc.imageLeft ? '' : 'order-2 md:order-1'}`}>
+          <span
+            class="absolute -top-10 md:-top-24 -left-1 md:-left-2 font-display-lg text-[5rem] md:text-[10rem] leading-none font-bold text-terracotta/10 select-none pointer-events-none"
+            aria-hidden="true"
+          >{String(i + 1).padStart(2, '0')}</span>
 
-          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-earth">
+          <h2 class="relative font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-earth">
             {svc.title}
           </h2>
 
@@ -123,6 +121,7 @@ const services = [
             ))}
           </ul>
         </div>
+        </div>
       </section>
     ))}
   </main>
@@ -143,3 +142,19 @@ const services = [
   </section>
 
 </Layout>
+
+<style>
+  /* Overlapping clay roof-tile scallops in terracotta */
+  .tile-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24' viewBox='0 0 48 24'%3E%3Cg fill='none' stroke='%23B36651' stroke-width='1.25' stroke-opacity='0.22'%3E%3Cpath d='M0 24a24 24 0 0 1 48 0'/%3E%3Cpath d='M-24 12a24 24 0 0 1 48 0M24 12a24 24 0 0 1 48 0'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 48px 24px;
+  }
+  .fade-right {
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 50%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 80% 70% at 30% 50%, #000 20%, transparent 75%);
+  }
+  .fade-left {
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 50%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 80% 70% at 70% 50%, #000 20%, transparent 75%);
+  }
+</style>

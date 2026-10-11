@@ -17,13 +17,6 @@ try {
 
 // Categories come from the actual project data — always stays in sync
 const categories = ['All', ...new Set(projects.map(p => p.category))];
-
-// First before/after project drives the comparison slider
-const baProject = projects.find(p => p.isBeforeAfter);
-const beforeImg = baProject?.images.find(img => !img.isAfter)?.url ?? '/images/gallery-before.jpg';
-const afterImg  = baProject?.images.find(img => img.isAfter)?.url  ?? '/images/gallery-after.jpg';
-const baTitle       = baProject?.title       ?? 'The Heritage Estate';
-const baDescription = baProject?.description ?? 'From weather-worn to like new — precision restoration from start to finish.';
 ---
 
 <Layout title="Project Gallery | AMATOLA Roof & Floor Restorers" activePage="gallery">
@@ -139,102 +132,6 @@ const baDescription = baProject?.description ?? 'From weather-worn to like new �
       <div id="project-modal-body" class="p-6 md:p-10"></div>
     </div>
   </div>
-
-  <!-- ── Before / After ─────────────────────────────────── -->
-  <section class="bg-surface-container py-section-gap-mobile md:py-section-gap overflow-hidden">
-    <div class="max-w-container-max mx-auto px-gutter">
-      <div class="text-center mb-16">
-        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">
-          Transformation You Can See
-        </h2>
-        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">
-          From weather-worn to wunderkind. See how we bring value and beauty back to aging properties.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        <!-- Comparison slider -->
-        <div
-          id="comparison-slider"
-          class="relative select-none overflow-hidden rounded-2xl shadow-xl aspect-video cursor-ew-resize"
-        >
-          <!-- After (full width underneath) -->
-          <div class="absolute inset-0">
-            <img src={afterImg} alt="After restoration" class="w-full h-full object-cover" />
-          </div>
-
-          <!-- Before (clipped left half) -->
-          <div id="before-clip" class="absolute inset-0 overflow-hidden" style="width: 50%">
-            <img
-              src={beforeImg}
-              alt="Before restoration"
-              class="w-full h-full object-cover grayscale opacity-80"
-              style="min-width: 200%;"
-            />
-          </div>
-
-          <!-- Divider handle -->
-          <div id="slider-line" class="absolute top-0 bottom-0 z-20" style="left: 50%">
-            <div class="absolute inset-y-0 left-0 w-0.5 -translate-x-px bg-white shadow-lg"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl">
-              <span class="material-symbols-outlined text-brick-red">unfold_more</span>
-            </div>
-          </div>
-
-          <!-- Labels -->
-          <span class="absolute top-4 left-4 z-30 bg-deep-earth/60 text-on-primary px-3 py-1 rounded-full font-label-md text-label-md font-bold backdrop-blur-sm">
-            BEFORE
-          </span>
-          <span class="absolute top-4 right-4 z-30 bg-brick-red text-on-primary px-3 py-1 rounded-full font-label-md text-label-md font-bold">
-            AFTER
-          </span>
-        </div>
-
-        <!-- Project details -->
-        <div class="space-y-6">
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-terracotta/10">
-            <h3 class="font-headline-md text-headline-md text-brick-red mb-4">
-              Project: {baTitle}
-            </h3>
-            <p class="font-body-md text-body-md text-on-surface-variant">
-              {baDescription}
-            </p>
-            {!baProject && (
-              <ul class="mt-6 space-y-5">
-                <li class="flex items-start gap-4">
-                  <span class="material-symbols-outlined text-brick-red mt-0.5">check_circle</span>
-                  <div>
-                    <p class="font-label-md text-label-md text-on-surface">Complete Stripping &amp; Recoating</p>
-                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                      Removed 15 years of oxidation and applied UV-resistant coatings.
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start gap-4">
-                  <span class="material-symbols-outlined text-brick-red mt-0.5">check_circle</span>
-                  <div>
-                    <p class="font-label-md text-label-md text-on-surface">Structural Crack Repair</p>
-                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                      Reinforced facade stability and sealed all entry points for moisture.
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start gap-4">
-                  <span class="material-symbols-outlined text-brick-red mt-0.5">check_circle</span>
-                  <div>
-                    <p class="font-label-md text-label-md text-on-surface">Waterproofing Warranty</p>
-                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                      Issued a 10-year peace-of-mind guarantee on all roof joints.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── CTA ────────────────────────────────────────────── -->
   <section class="bg-brick-red py-12 relative overflow-hidden">
@@ -382,28 +279,4 @@ const baDescription = baProject?.description ?? 'From weather-worn to like new �
   modalClose?.addEventListener('click', closeModal);
   modalBackdrop?.addEventListener('click', closeModal);
   window.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // ── Before / After comparison slider ───────────────────
-  const slider     = document.getElementById('comparison-slider');
-  const beforeClip = document.getElementById('before-clip');
-  const sliderLine = document.getElementById('slider-line');
-  if (slider && beforeClip && sliderLine) {
-    let dragging = false;
-
-    function setPercent(clientX: number) {
-      const rect = slider!.getBoundingClientRect();
-      let pct = ((clientX - rect.left) / rect.width) * 100;
-      pct = Math.max(0, Math.min(100, pct));
-      beforeClip!.style.width = pct + '%';
-      sliderLine!.style.left  = pct + '%';
-    }
-
-    slider.addEventListener('mousedown',  e => { dragging = true; setPercent(e.clientX); });
-    window.addEventListener('mousemove',  e => { if (dragging) setPercent(e.clientX); });
-    window.addEventListener('mouseup',    ()  => { dragging = false; });
-
-    slider.addEventListener('touchstart', e => { dragging = true; setPercent(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchmove',  e => { if (dragging) setPercent(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend',   ()  => { dragging = false; });
-  }
 </script>

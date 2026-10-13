@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 
 const contactDetails = [
   {
@@ -17,8 +18,8 @@ const contactDetails = [
   {
     icon: 'mail',
     label: 'Email Address',
-    value: 'derek@arfr.co.za',
-    href: 'mailto:derek@arfr.co.za',
+    value: 'admin@arfr.co.za',
+    href: 'mailto:admin@arfr.co.za',
   },
   {
     icon: 'location_on',
@@ -37,7 +38,7 @@ const contactDetails = [
 ];
 ---
 
-<Layout title="Contact Us | AMATOLA Roof & Floor Restorers" activePage="contact">
+<Layout title="Contact Us | AMATOLA Roof to Floor Restorers" activePage="contact">
 
   <!-- ── Hero ───────────────────────────────────────────── -->
   <header class="bg-deep-earth py-20 relative overflow-hidden">
@@ -87,18 +88,8 @@ const contactDetails = [
           </div>
 
           <!-- Map -->
-          <div class="rounded-xl overflow-hidden shadow-sm aspect-video bg-surface-container relative">
-            <img
-              src="/images/contact-map.jpg"
-              alt="East London service area map"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-deep-earth/20 flex items-center justify-center">
-              <div class="bg-surface px-6 py-3 rounded-full flex items-center gap-2 shadow-lg">
-                <span class="material-symbols-outlined text-brick-red">map</span>
-                <span class="font-label-md text-label-md text-on-surface">View Service Area</span>
-              </div>
-            </div>
+          <div class="rounded-xl overflow-hidden shadow-sm aspect-video border border-terracotta/10">
+            <ServiceAreaMap />
           </div>
         </div>
 
@@ -122,7 +113,7 @@ const contactDetails = [
               </a>
 
               <a
-                href="mailto:derek@arfr.co.za?subject=Free%20Quote%20Request"
+                href="mailto:admin@arfr.co.za?subject=Free%20Quote%20Request"
                 class="flex items-center justify-center gap-3 bg-deep-earth text-on-primary py-5 rounded-lg font-headline-md text-headline-md shadow-lg hover:brightness-110 active:scale-[0.98] transition-all"
               >
                 <span class="material-symbols-outlined">mail</span>
@@ -148,48 +139,3 @@ const contactDetails = [
   </section>
 
 </Layout>
-
-<script>
-  // ── Replace YOUR_FORM_ID with the ID from formspree.io/dashboard ──
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const btn  = document.getElementById('submit-btn') as HTMLButtonElement;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const original = btn.textContent!;
-
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-
-      if (res.ok) {
-        btn.textContent = '✓ Message Sent!';
-        btn.classList.replace('bg-brick-red', 'bg-tertiary-container');
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.classList.replace('bg-tertiary-container', 'bg-brick-red');
-          btn.disabled = false;
-          form.reset();
-        }, 3000);
-      } else {
-        throw new Error('Server error');
-      }
-    } catch {
-      btn.textContent = 'Failed — please try again';
-      btn.classList.replace('bg-brick-red', 'bg-error');
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.replace('bg-error', 'bg-brick-red');
-        btn.disabled = false;
-      }, 3000);
-    }
-  });
-</script>

@@ -1,6 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+// Master Builders Association East Cape member since 6 October 1998 (cert. no. 3071)
+const MBA_SINCE = new Date('1998-10-06');
+const now = new Date();
+const memberYears =
+  now.getFullYear() - MBA_SINCE.getFullYear() -
+  (now < new Date(now.getFullYear(), MBA_SINCE.getMonth(), MBA_SINCE.getDate()) ? 1 : 0);
+
 // Photo strip between the stats and How It Works.
 // To change a photo, replace the file in public/images (keep the same name).
 // `grow` sets the relative width so the strip reads as a collage.
@@ -13,7 +20,7 @@ const collage = [
 ];
 ---
 
-<Layout title="AMATOLA Roof & Floor Restorers | Residential Specialists" activePage="home">
+<Layout title="AMATOLA Roof to Floor Restorers | Residential Specialists" activePage="home">
 
   <!-- ── Hero ───────────────────────────────────────────── -->
   <header class="relative min-h-[700px] flex items-center overflow-hidden">
@@ -26,8 +33,34 @@ const collage = [
       <div class="absolute inset-0 bg-gradient-to-r from-deep-earth/90 via-deep-earth/40 to-transparent"></div>
     </div>
 
+
+    <!-- MBA membership seal (laptop+: top-right corner) -->
+    <a href="/about#accreditation" aria-label="View our Master Builders Association membership" class="hidden lg:flex absolute z-10 top-10 right-16 flex-col items-center transition-transform duration-300 hover:scale-105">
+      <img
+        src="/images/mba-logo.png"
+        alt="Master Builders Association East Cape member"
+        width="200"
+        height="200"
+        class="w-48 h-48 rounded-full bg-white ring-4 ring-white shadow-2xl"
+      />
+      <p class="mt-4 text-deep-earth bg-white/85 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-label-md uppercase tracking-wider shadow">
+        Registered since 1998
+      </p>
+    </a>
+
     <div class="relative z-10 max-w-container-max mx-auto px-gutter w-full py-20">
       <div class="max-w-2xl space-y-6">
+        <!-- MBA membership seal (phone/tablet: above the headline) -->
+        <div class="lg:hidden flex items-center gap-3">
+          <img
+            src="/images/mba-logo.png"
+            alt="Master Builders Association East Cape member"
+            width="64"
+            height="64"
+            class="w-16 h-16 rounded-full bg-white ring-2 ring-white shadow-lg shrink-0"
+          />
+          <p class="text-warm-cream text-xs uppercase tracking-wider">MBA registered<br />since 1998</p>
+        </div>
         <p class="text-warm-cream font-label-md text-label-md tracking-[0.2em] uppercase">
           Trusted Residential Specialists · East London &amp; Surrounds
         </p>
@@ -102,10 +135,10 @@ const collage = [
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 text-center">
         <div class="lg:border-r border-white/10 px-4">
           <p class="font-display-lg text-display-lg-mobile md:text-display-lg text-brick-red leading-none">
-            <span data-count="20">20</span>+
+            <span data-count={memberYears}>{memberYears}</span>
           </p>
-          <p class="mt-3 font-headline-md text-lg">Years of experience</p>
-          <p class="mt-1 opacity-60 text-sm">Restoring Eastern Cape homes</p>
+          <p class="mt-3 font-headline-md text-lg">Years in business</p>
+          <p class="mt-1 opacity-60 text-sm">MBA East Cape member since 1998</p>
         </div>
 
         <!-- TODO: confirm real number of homes with Derek -->
@@ -212,7 +245,7 @@ const collage = [
         "We work in your home. We treat it like our own."
       </h3>
       <p class="text-on-surface-variant font-body-lg text-body-lg leading-relaxed italic">
-        Amatola Roof &amp; Floor Restorers is a proudly South African company serving residential
+        Amatola Roof to Floor Restorers is a proudly South African company serving residential
         homeowners across the Eastern Cape. From a leaking roof to a full exterior repaint —
         we handle it all with care and professionalism.
       </p>
@@ -237,14 +270,14 @@ const collage = [
           <span class="material-symbols-outlined text-3xl">phone_in_talk</span>
           <div class="text-left">
             <p class="font-label-md text-label-md uppercase opacity-70">Call Us</p>
-            <p class="text-xl font-bold">082 784 2112 | 043 740 0760</p>
+            <p class="text-xl font-bold"><a href="tel:0827842112" class="hover:underline">082 784 2112</a> | <a href="tel:0437400760" class="hover:underline">043 740 0760</a></p>
           </div>
         </div>
         <div class="flex items-center gap-4">
           <span class="material-symbols-outlined text-3xl">mail</span>
           <div class="text-left">
             <p class="font-label-md text-label-md uppercase opacity-70">Email Us</p>
-            <p class="text-xl font-bold">derek@arfr.co.za</p>
+            <p class="text-xl font-bold"><a href="mailto:admin@arfr.co.za" class="hover:underline">admin@arfr.co.za</a></p>
           </div>
         </div>
       </div>

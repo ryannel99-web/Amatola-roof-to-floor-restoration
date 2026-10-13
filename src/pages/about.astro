@@ -1,17 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
+import { serviceTowns } from '../lib/serviceAreas';
 
-const serviceAreas = [
-  "East London",
-  "King William's Town",
-  "Mdantsane",
-  "Gonubie",
-  "Berlin",
-  "Stutterheim",
-];
+const serviceAreas = serviceTowns.map(t => t.name);
 ---
 
-<Layout title="About Us | AMATOLA Roof & Floor Restorers" activePage="about">
+<Layout title="About Us | AMATOLA Roof to Floor Restorers" activePage="about">
 
   <!-- ── Hero ───────────────────────────────────────────── -->
   <section class="bg-warm-cream py-section-gap-mobile md:py-section-gap px-gutter text-center">
@@ -25,31 +20,52 @@ const serviceAreas = [
     </div>
   </section>
 
-  <!-- ── Our Story ──────────────────────────────────────── -->
+  <!-- ── Meet the Team ──────────────────────────────────── -->
   <section class="py-section-gap-mobile md:py-section-gap px-gutter bg-white">
-    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="relative overflow-hidden rounded-xl shadow-lg">
-        <img
-          src="/images/about-team.jpg"
-          alt="The Amatola Roof & Floor Restorers team on site"
-          class="w-full h-[500px] object-cover"
-        />
+    <div class="max-w-container-max mx-auto text-center">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Meet the Team</h2>
+
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="max-w-md w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-terracotta/10">
+        <div class="h-80 w-full overflow-hidden">
+          <img
+            src="/images/about-derek.jpg"
+            alt="Derek, Founder & Lead Contractor"
+            class="w-full h-full object-cover object-[center_8%]"
+          />
+        </div>
+        <div class="p-8 text-left">
+          <span class="text-brick-red font-label-md text-label-md uppercase tracking-wider">
+            Founder &amp; Lead Contractor
+          </span>
+          <h3 class="font-headline-md text-headline-md text-on-surface mt-2">Derek</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-4 leading-relaxed">
+            With over 20 years of hands-on experience in roof restoration and specialized flooring,
+            Derek leads every project with a commitment to technical excellence and old-school reliability.
+          </p>
+        </div>
       </div>
 
-      <div class="space-y-6">
-        <h2 class="font-headline-lg text-headline-lg text-on-surface">Who We Are</h2>
-        <div class="h-1 w-20 bg-brick-red"></div>
-        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-          Based in the heart of the Eastern Cape, Amatola Roof &amp; Floor Restorers was founded on
-          a simple premise: professional craftsmanship should be personal. We've spent years
-          restoring the structural integrity and aesthetic beauty of homes across the region.
-        </p>
-        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-          Our reputation is built on honesty, reliable workmanship, and a deep understanding of
-          local environmental factors that affect your home's exterior and interior surfaces.
-          We don't just fix problems; we provide lasting restoration solutions that protect your
-          most valuable investment.
-        </p>
+      <div class="max-w-md w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-terracotta/10">
+        <div class="h-80 w-full overflow-hidden">
+          <img
+            src="/images/about-foreman.jpg"
+            alt="Forman Fumene, Site Foreman"
+            class="w-full h-full object-cover object-[center_38%]"
+          />
+        </div>
+        <div class="p-8 text-left">
+          <span class="text-brick-red font-label-md text-label-md uppercase tracking-wider">
+            Site Foreman
+          </span>
+          <h3 class="font-headline-md text-headline-md text-on-surface mt-2">Forman Fumene</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-4 leading-relaxed">
+            Fumene runs the team on site day to day, making sure every job is done properly,
+            safely and to Derek's standard. He's the friendly face you'll see on your roof,
+            and the one who makes sure your home is left clean and tidy at the end of each day.
+          </p>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -85,52 +101,111 @@ const serviceAreas = [
     </div>
   </section>
 
-  <!-- ── Meet the Team ──────────────────────────────────── -->
+  <!-- ── Our Story ──────────────────────────────────────── -->
   <section class="py-section-gap-mobile md:py-section-gap px-gutter bg-warm-cream/30">
-    <div class="max-w-container-max mx-auto text-center">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Meet the Team</h2>
-
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="max-w-md w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-terracotta/10">
-        <div class="h-80 w-full overflow-hidden">
-          <img
-            src="/images/about-derek.jpg"
-            alt="Derek, Founder & Lead Contractor"
-            class="w-full h-full object-cover object-[center_8%]"
-          />
-        </div>
-        <div class="p-8 text-left">
-          <span class="text-brick-red font-label-md text-label-md uppercase tracking-wider">
-            Founder &amp; Lead Contractor
-          </span>
-          <h3 class="font-headline-md text-headline-md text-on-surface mt-2">Derek</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant mt-4 leading-relaxed">
-            With over 20 years of hands-on experience in roof restoration and specialized flooring,
-            Derek leads every project with a commitment to technical excellence and old-school reliability.
-          </p>
-        </div>
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative overflow-hidden rounded-xl shadow-lg">
+        <img
+          src="/images/about-team.jpg"
+          alt="The Amatola Roof to Floor Restorers team on site"
+          class="w-full h-[500px] object-cover"
+        />
       </div>
 
-      <!-- TODO: fill in the foreman's name and bio once known -->
-      <div class="max-w-md w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-terracotta/10">
-        <div class="h-80 w-full overflow-hidden">
+      <div class="space-y-6">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Who We Are</h2>
+        <div class="h-1 w-20 bg-brick-red"></div>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Based in the heart of the Eastern Cape, Amatola Roof to Floor Restorers was founded on
+          a simple premise: professional craftsmanship should be personal. We've spent years
+          restoring the structural integrity and aesthetic beauty of homes across the region.
+        </p>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Our reputation is built on honesty, reliable workmanship, and a deep understanding of
+          local environmental factors that affect your home's exterior and interior surfaces.
+          We don't just fix problems; we provide lasting restoration solutions that protect your
+          most valuable investment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Accreditation ──────────────────────────────────── -->
+  <section id="accreditation" class="scroll-mt-24 py-section-gap-mobile md:py-section-gap px-gutter bg-white">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+
+      <!-- Details -->
+      <div class="space-y-6">
+        <div class="flex items-center gap-4">
           <img
-            src="/images/about-foreman.jpg"
-            alt="Site Foreman"
-            class="w-full h-full object-cover object-[center_38%]"
+            src="/images/mba-logo.png"
+            alt=""
+            width="64"
+            height="64"
+            class="w-16 h-16 rounded-full bg-white ring-2 ring-terracotta/20 shrink-0"
+          />
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Registered &amp; Accredited</h2>
+        </div>
+        <div class="w-20 h-1 bg-brick-red"></div>
+        <p class="font-body-lg text-body-lg text-on-surface-variant">
+          Amatola Roof to Floor Restorers has been a registered member of the
+          East Cape Master Builders' and Allied Industries Association since 1998.
+        </p>
+
+        <dl class="grid grid-cols-2 gap-x-6 gap-y-4 bg-warm-cream/40 rounded-xl p-6 border border-terracotta/10">
+          <div>
+            <dt class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Member since</dt>
+            <dd class="font-headline-md text-lg text-deep-earth mt-1">6 October 1998</dd>
+          </div>
+          <div>
+            <dt class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Membership no.</dt>
+            <dd class="font-headline-md text-lg text-deep-earth mt-1">3071</dd>
+          </div>
+          <div>
+            <dt class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Category</dt>
+            <dd class="font-headline-md text-lg text-deep-earth mt-1">Subcontractor</dd>
+          </div>
+          <div>
+            <dt class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Valid until</dt>
+            <dd class="font-headline-md text-lg text-deep-earth mt-1">31 March 2027</dd>
+          </div>
+        </dl>
+
+        <a
+          href="/documents/mba-certificate-2026.pdf"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 bg-brick-red text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md hover:bg-terracotta transition-colors shadow"
+        >
+          View Certificate (PDF)
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true">
+            <path d="M14 3h7v7M10 14L21 3M21 14v7H3V3h7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Certificate preview (opens the PDF) -->
+      <a
+        href="/documents/mba-certificate-2026.pdf"
+        target="_blank"
+        rel="noopener"
+        class="group block max-w-sm w-full mx-auto"
+        aria-label="Open the MBA certificate of membership (PDF)"
+      >
+        <div class="bg-white p-3 rounded-lg shadow-xl border border-terracotta/10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl">
+          <img
+            src="/images/mba-certificate.jpg"
+            alt="East Cape Master Builders' Association certificate of membership 2026 for Amatola Roof to Floor Restorers cc"
+            width="849"
+            height="1100"
+            loading="lazy"
+            class="w-full h-auto rounded"
           />
         </div>
-        <div class="p-8 text-left">
-          <span class="text-brick-red font-label-md text-label-md uppercase tracking-wider">
-            Site Foreman
-          </span>
-          <h3 class="font-headline-md text-headline-md text-on-surface mt-2">[Name]</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant mt-4 leading-relaxed">
-            [Short bio: years of experience, specialities and role on site.]
-          </p>
-        </div>
-      </div>
-      </div>
+        <p class="text-center text-sm text-on-surface-variant mt-3 group-hover:text-brick-red transition-colors">
+          Click to view full certificate
+        </p>
+      </a>
     </div>
   </section>
 
@@ -172,22 +247,9 @@ const serviceAreas = [
       </div>
 
       <!-- Map -->
-      <div class="order-1 md:order-2 bg-warm-cream/50 rounded-2xl p-4 flex items-center justify-center min-h-[400px]">
-        <div class="relative w-full h-full rounded-xl overflow-hidden border border-terracotta/20 shadow-inner bg-surface">
-          <img
-            src="/images/about-map.jpg"
-            alt="Eastern Cape service area map"
-            class="w-full h-full object-cover grayscale brightness-110 opacity-70"
-          />
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="bg-brick-red text-on-primary px-4 py-2 rounded-full font-label-md text-label-md shadow-lg flex items-center gap-2">
-              <span
-                class="material-symbols-outlined text-sm"
-                style="font-variation-settings: 'FILL' 1"
-              >location_on</span>
-              LOCAL EXPERTS
-            </div>
-          </div>
+      <div class="order-1 md:order-2 bg-warm-cream/50 rounded-2xl p-4">
+        <div class="h-[400px] rounded-xl overflow-hidden border border-terracotta/20 shadow-inner">
+          <ServiceAreaMap />
         </div>
       </div>
     </div>

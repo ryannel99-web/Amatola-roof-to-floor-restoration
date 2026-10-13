@@ -1,0 +1,50 @@
+---
+// Interactive map of the towns Amatola serves (Leaflet + OpenStreetMap, no API key needed).
+import { serviceTowns } from '../lib/serviceAreas';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  class={`service-area-map relative z-0 w-full h-full min-h-[320px] ${className}`}
+  data-towns={JSON.stringify(serviceTowns)}
+  role="region"
+  aria-label={`Map of our service area: ${serviceTowns.map(t => t.name).join(', ')}`}
+></div>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  interface Town { name: string; lat: number; lng: number; }
+
+  document.querySelectorAll<HTMLElement>('.service-area-map').forEach((el) => {
+    const towns: Town[] = JSON.parse(el.dataset.towns ?? '[]');
+
+    // Don't hijack page scrolling; zoom with the +/- buttons or pinch
+    const map = L.map(el, { scrollWheelZoom: false, attributionControl: true });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    const markers = towns.map((t) =>
+      L.circleMarker([t.lat, t.lng], {
+        radius: 9,
+        color: '#ffffff',
+        weight: 3,
+        fillColor: '#C64A3E',
+        fillOpacity: 1,
+      })
+        .bindTooltip(t.name, { direction: 'top', offset: [0, -8] })
+        .addTo(map)
+    );
+
+    map.fitBounds(L.featureGroup(markers).getBounds(), { padding: [40, 40] });
+  });
+</script>
